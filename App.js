@@ -10,6 +10,7 @@ import ForgotPassword from './Component/ForgotPassword/index'
 
 
 
+
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -21,11 +22,15 @@ const App = () => {
 
 
      <Stack.Navigator initialRouteName="Timeline" >
+    
+
      <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
 
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Timeline" component={Timeline} />
+       
+
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -40,3 +45,6 @@ const App = () => {
 };
 
 export default App;
+
+
+

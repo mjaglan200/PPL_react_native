@@ -144,18 +144,40 @@ router.post(Address.data[4], async(req, res) =>{
     res.send(result)})
 
 
-    router.post('/imageup',upload.single('Photo'),async function(req, res, next){
+    router.post('/imageup',upload.single('image'),async function(req, res, next){
 console.log(req.body)
 console.log(req.file);
 // console.log(req.body.fileName)
+        await  uploadfile.create({'image':req.file.originalname,'name':req.body.name,'Description':req.body.Description,'Daate':req.body.Daate})    
+           res.send("image saved successfully")
+           console.log("saved successfully image")
+       })
 
-     await  uploadfile.create({'image':req.body.fileName,'name':req.body.name,'Description':req.body.Description,'Daate':req.body.Daate})
-    
-        res.send("image saved successfully")
-        console.log("saved successfully image")
-
+    router.get('/getimage',async function(req, res){
+        console.log('get image')
+        let ress=await uploadfile.find();
+        
+        res.send(ress);
+        // console.log(ress)
 
     })
+   
+
+
+
+
+//     router.post('/imageup',upload.single('Photo'),async function(req, res, next){
+// console.log(req.body)
+// console.log(req.file);
+// // console.log(req.body.fileName)
+
+//      await  uploadfile.create({'image':req.body.fileName,'name':req.body.name,'Description':req.body.Description,'Daate':req.body.Daate})
+    
+//         res.send("image saved successfully")
+//         console.log("saved successfully image")
+
+
+//     })
 
     router.post(Address.data[7], async function(req, res){
         // console.log("received id from frontend : ",req.body.id)
@@ -221,11 +243,5 @@ console.log(req.file);
         })
     })
 
-    router.get(Address.data[10],async function(req, res){
-        let ress=await uploadfile.find();
-        res.send(ress);
-        // console.log(ress)
-
-    })
 
 module.exports =router;
